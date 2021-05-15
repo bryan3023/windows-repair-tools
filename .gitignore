@@ -1,0 +1,7 @@
+.vscode/
+
+temp/
+staging/
+updates/
+logs/
+output/
