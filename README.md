@@ -3,12 +3,18 @@ This is an evolving collection of tools to help troubleshoot corrupt Windows ins
 
 I'll fill this in as I get a better idea of what I need. The goal is to create a collection of tools that allow one to quickly troubleshoot and resolve corrupt Windows installations. Very much a work in progress.
 
-To use these files, click the **Download Zip** link from the **Code** drop-down button and extract the archive. You'll need to run these commands from an elevated prompt.
+To use these files, click the **Download Zip** link from the **Code** drop-down button and extract the archive. Then import the module by running:
 
-## Export-InstallWim.ps1
+```powershell
+Import-Module .\WindowsRepair
+```
+
+You'll need to run these commands from an elevated prompt.
+
+## Export-WrInstallWim.ps1
 The closer the repair image is to the broken image in terms of patch level, the easier it is for DISM to find an appropriate replacement for corrupted files. When using a Windows Install.wim file, the first step in that process is to export the image for the edition of Windows we need to repair. This image will serve a the baseline for applying update packages.
 
-You can provide the path to either a Windows installation media ISO file or directly to the *install.wim* file on an already mounted disc.
+You can provide the path to either a Windows installation media ISO file or directly to the *install.wim* (or *install.esd*) file on an already mounted disc.
 
 Optionally, you can provide the index number of the image you want to export. If you don't and multiple images are detected, you'll be prompted to choose.
 
@@ -17,9 +23,9 @@ Once an image is selected, a copy will be exported to a staging folder for patch
 Examples:
 
 ```powershell
-Export-InstallWim.ps1 -WimFilePath D:\sources\install.wim -ImageIndex 2
+Export-WrInstallWim -WimFilePath D:\sources\install.wim -ImageIndex 2
 
-Export-InstallWim.ps1 -InstallMediaIso downloads\WinSvr2019.iso
+Export-WrInstallWim -InstallMediaIso downloads\WinSvr2019.iso
 ```
 
 > **NOTE:** According to Microsoft's documentation on [choosing a repair source](https://docs.microsoft.com/en-us/windows-hardware/manufacture/desktop/configure-a-windows-repair-source#choose-a-repair-source), they note you should always use RTM media rather than refresh media, given that the later can exlude older versions of files that may be needed.
