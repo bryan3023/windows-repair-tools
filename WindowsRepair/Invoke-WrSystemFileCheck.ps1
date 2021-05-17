@@ -17,8 +17,15 @@ function Invoke-WrSystemFileCheck {
             PassThru = $true
             Wait = $true
         }
+        $Process = Start-Process @InvokeSfc
 
-        $Result = Start-Process @InvokeSfc
+        $Result = [PSCustomObject] @{
+            FilePath = $InvokeSfc.FilePath
+            ArgumentList = $InvokeSfc.ArgumentList
+            ExitCode = $Process.ExitCode
+            StartTime = $Process.StartTime
+            EndTime = $Process.ExitTime
+        }
     }
 
     END {

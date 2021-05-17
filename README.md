@@ -3,6 +3,8 @@ This is an evolving collection of tools to help troubleshoot corrupt Windows ins
 
 I'll fill this in as I get a better idea of what I need. The goal is to create a collection of tools that allow one to quickly troubleshoot and resolve corrupt Windows installations. Very much a work in progress.
 
+In terms of compatibility, I'm targeting PowerShell 5.1, since anything newer won't run in WinPE.
+
 To use these files, click the **Download Zip** link from the **Code** drop-down button and extract the archive. Then import the module by running:
 
 ```powershell
@@ -11,7 +13,7 @@ Import-Module .\WindowsRepair
 
 You'll need to run these commands from an elevated prompt.
 
-## Export-WrInstallWim.ps1
+## Export-WrInstallWim
 The closer the repair image is to the broken image in terms of patch level, the easier it is for DISM to find an appropriate replacement for corrupted files. When using a Windows Install.wim file, the first step in that process is to export the image for the edition of Windows we need to repair. This image will serve a the baseline for applying update packages.
 
 You can provide the path to either a Windows installation media ISO file or directly to the *install.wim* (or *install.esd*) file on an already mounted disc.
