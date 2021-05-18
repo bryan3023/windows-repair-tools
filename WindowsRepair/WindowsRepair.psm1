@@ -1,4 +1,6 @@
-. "$PSScriptRoot\Export-WrCbsLogs.ps1"
-. "$PSScriptRoot\Export-WrInstallWim.ps1"
-. "$PSScriptRoot\Invoke-WrSystemFileCheck.ps1"
-. "$PSScriptRoot\Read-WrCbsLogs.ps1"
+Set-StrictMode -Version 3.0
+
+$PublicExports = Get-ChildItem -Path "$PSScriptRoot\*.ps1"
+$PublicExports | ForEach-Object -Process {
+    . $PSItem.FullName
+}

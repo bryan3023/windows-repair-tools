@@ -1,12 +1,14 @@
 #Requires -RunAsAdministrator
 
+Set-StrictMode -Version 3.0
+
 function Invoke-WrSystemFileCheck {
 
     [CmdletBinding()]
     Param()
 
     BEGIN {
-        . "$PSScriptRoot\util\Context.ps1"
+        . "$PSScriptRoot\util\SystemContext.ps1"
     }
 
     PROCESS {

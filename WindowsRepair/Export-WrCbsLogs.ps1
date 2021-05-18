@@ -2,14 +2,21 @@
 function Export-WrCbsLogs {
     [CmdLetBinding()]
     Param(
-        [Parameter(ValueFromPipelineByPropertyName)]
+        [Parameter(ValueFromPipelineByPropertyName,ParameterSetName='Subset')]
         [datetime] $StartTime
     ,
-        [Parameter(ValueFromPipelineByPropertyName)]
+        [Parameter(ValueFromPipelineByPropertyName,ParameterSetName='Subset')]
         [datetime] $ExitTime
     ,
-        [Parameter(ValueFromPipeline)]
+        [Parameter(ValueFromPipeline,ParameterSetName='Subset')]
         $PipelineInput
+    ,
+        [Parameter(ParameterSetName='All')]
+        [switch] $All
+    ,
+        [Parameter(ParameterSetName='All')]
+        [Parameter(ParameterSetName='Subset')]
+        [string] $LogPath
     )
 
     PROCESS {

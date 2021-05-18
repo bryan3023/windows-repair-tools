@@ -1,3 +1,5 @@
+Set-StrictMode -Version 3.0
+
 $RemoteCredentials = $null
 
 function Test-WinPE {
